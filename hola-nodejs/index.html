@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Ejercicios JavaScript</title>
+</head>
+<body>
+    <div class="lista-tareas">
+        <h1>Lista de Tareas</h1>
+        <ol id="lista-tareas"></ol>
+    </div>
+
+    <div class="lista-nombres">
+        <h1>Lista de Nombres</h1>
+        <ul id="lista-nombres"></ul>
+    </div>
+
+    <div>
+        <h1>Formulario de Prueba</h1>
+        <form onsubmit="return validarFormulario()">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <br><br>
+            <button type="submit" id="miBoton" onclick="cambiarColor()">Enviar</button>
+        </form>
+    </div>
+
+    <div>
+        <h1>Correos Válidos</h1>
+        <ul id="correos-validos"></ul>
+    </div>
+
+    <div>
+        <h1>Correos Inválidos</h1>
+        <ul id="correos-invalidos"></ul>
+    </div>
+
+    <div>
+        <button id="boton">Mi Boton</button>
+    </div>
+
+    <!--<script type="text/javascript" src="./condicionales.js"></script>-->
+    <!--<script type="text/javascript" src="./bucles.js"></script>-->
+    <!--<script type="text/javascript" src="./funciones.js"></script>-->
+    <!--<script type="text/javascript" src="./funciones_flecha.js"></script>-->
+    <!--<script type="text/javascript" src="./arrays.js"></script>-->
+    <!--<script type="text/javascript" src="./objetos.js"></script>-->
+    <script type="text/javascript" src="./desestructuracion.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@
     <title>Ejercicios JavaScript</title>
 </head>
 <body>
+    <!--
     <div class="lista-tareas">
         <h1>Lista de Tareas</h1>
         <ol id="lista-tareas"></ol>
@@ -40,6 +41,42 @@
     <div>
         <button id="boton">Mi Boton</button>
     </div>
+    -->
+
+    <div id="mensaje"></div>
+    <button onclick="mostrarMensaje()">Mostrar</button>
+    
+    <br><br>
+    
+    <div id="cart"></div>
+    <button onclick="addToCart('Camiseta')">Añadir Camiseta</button>
+    
+    <br><br>
+    
+    <p id="parrafo">Texto original</p>
+    <button onclick="cambiarTexto()">Cambiar</button>
+
+    <br><br>
+
+    <h1>Demostración de seguridad con textContent</h1>
+    <label for="input">Introduce texto:</label>
+    <input type="text" id="input" placeholder="Escribe algo aquí">
+    <button onclick="mostrarTexto()">Mostrar texto</button>
+    <p id="salida">Salida: </p>
+
+    <br><br>
+
+    <p id="texto">Haz clic en el botón.</p>
+    <button onclick="resaltar()">Toggle</button>
+
+    <br><br>
+    
+    <input id="email" type="text" placeholder="Introduce tu email" />
+    <span id="error"></span>
+    <button onclick="validar()">Validar</button>
+
+
+
 
     <!--<script type="text/javascript" src="./condicionales.js"></script>-->
     <!--<script type="text/javascript" src="./bucles.js"></script>-->
@@ -47,6 +84,7 @@
     <!--<script type="text/javascript" src="./funciones_flecha.js"></script>-->
     <!--<script type="text/javascript" src="./arrays.js"></script>-->
     <!--<script type="text/javascript" src="./objetos.js"></script>-->
-    <script type="text/javascript" src="./desestructuracion.js"></script>
+    <!--<script type="text/javascript" src="./desestructuracion.js"></script>-->
+    <script type="text/javascript" src="./dom.js"></script>
 </body>
 </html>

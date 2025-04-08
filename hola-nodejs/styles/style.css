@@ -10,3 +10,14 @@ h1 {
     box-shadow: 2px 2px 7px 1px #1C6EA4;
 }
 
+.resaltado {
+     color: red;
+     font-weight: bold;
+}
+
+.error {
+    color: rgb(192, 83, 0);
+    font-weight: bold;
+}
+    
+

@@ -19,5 +19,15 @@ h1 {
     color: rgb(192, 83, 0);
     font-weight: bold;
 }
+
+.amarrillo {
+    background-color: yellow;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.oculto { 
+    display: none; 
+}
     
 

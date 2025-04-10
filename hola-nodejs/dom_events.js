@@ -66,3 +66,5 @@ input.addEventListener("keydown", logKey);
 function logKey(e) {
     textSaludo.textContent += ` ${e.code}`;
 }
+
+/**7. */

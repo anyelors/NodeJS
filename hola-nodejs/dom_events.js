@@ -64,7 +64,38 @@ const textSaludo = document.getElementById("saludo");
 input.addEventListener("keydown", logKey);
 
 function logKey(e) {
-    textSaludo.textContent += ` ${e.code}`;
+    textSaludo.textContent += `${e.key}`;
 }
 
 /**7. */
+const myButton = document.getElementById('unaVez');
+myButton.addEventListener('click', function() {
+    myButton.disabled = true;
+
+    setTimeout(function() {
+        myButton.disabled = false;
+    }, 5000);
+});
+
+/**8. */
+var imagen = document.getElementById('foto');
+imagen.addEventListener('mouseover', function (){
+    this.src='./image/imagen2.jpg';   
+});
+imagen.addEventListener('mouseout', function (){
+    this.src='./image/imagen1.jpg';   
+});
+
+/**9. */
+const input1 = document.getElementById("tecla");
+document.addEventListener("keydown", (event) => {
+    input1.textContent = `${event.key}`;
+});
+
+/**10. */
+document.getElementById('crear').addEventListener('click', () => {
+    let contenedor = document.getElementById('contenedor');
+    let p = document.createElement('p');
+    p.innerText = 'Hola, se creo un parrafo';
+    contenedor.appendChild(p);
+});

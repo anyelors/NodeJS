@@ -1,3 +1,4 @@
+/**EJEMPLO ######################################################### 
 class Persona {
   constructor(nombre, edad) {
     this.nombre = nombre;
@@ -158,11 +159,124 @@ class Coche {
   miCarrito.agregarProducto({ nombre: "Libro", precio: 15 });
   miCarrito.agregarProducto({ nombre: "Arkatza", precio: 2 });
   console.log(`Total a pagar: €${miCarrito.total()}`);
+  */
 
+  /**EJERCICIOS 
+   * ##################################################################################
+  */
+ /**1. 
+  class Libro {
+    constructor(titulo, autor, anio) {
+      this.titulo = titulo;
+      this.autor = autor;
+      this.anio = anio;
+    }
+   
+    infoLibro() {
+      console.log(`Libro: ${this.titulo} Autor: ${this.autor} Año: ${this.anio}.`);
+    }
+  }
+    
+  const libro1 = new Libro("Cien años de soledad", "Gabo", "1982");
+  libro1.infoLibro();
+*/
 
+/**2. 
+class Estudiante {
+  constructor(nombre, apellido, edad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+  }
+  mayorEdad() {
+    return `El Estudiante ${this.nombre} ${this.edad >= 18 ? 'Es Mayor de edad' : 'Es Menor de Edad'}`;
+  }
+}
 
+const est1 = new Estudiante("Lupe", "Ramirez", 12);
+console.log(est1.mayorEdad());
+*/
 
+/**3. 
+class Cancion {
+  constructor(titulo, artista) {
+    this.titulo = titulo;
+    this.artista = artista;
+  }
+  reproducir() {
+    console.log(`Reproduciendo: [${this.titulo}] - [${this.artista}].`);
+  }
+}
 
+const miTrack = new Cancion("Bandolera", "David Bisbal");
+miTrack.reproducir();
+*/
+
+/**4. 
+function Persona(nombre, edad) {
+  this.nombre = nombre;
+  this.edad = edad;
+}
+
+Persona.prototype.saludo = function () {
+  console.log(`Hola ${this.nombre} tienes ${this.edad} años de edad.`);
+};
+
+const person = new Persona("Sol", 4);
+person.saludo();
+*/
+
+/**5. 
+class Producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+
+  conDescuento(porcentaje) {
+    const descuento = this.precio * (porcentaje / 100);
+    return this.precio - descuento;
+  }
+}
+
+const producto1 = new Producto("Pelota", 15);
+console.log(`Precio final: € ${producto1.conDescuento(20)}`);
+*/
+
+/**6. 
+class Coche {
+  constructor(marca, modelo, velocidad) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.velocidad = velocidad;
+  }
+
+  acelerar(km) {
+    this.velocidad += km;
+    console.log(`El Coche va a ${this.velocidad} Kilometros por Hora.`);
+  }
+}
+
+const miCoche = new Coche("Toyota", "Yaris", 120);
+miCoche.acelerar(20);
+*/
+
+/**7. */
+class Contador {
+  constructor() {
+    this.num = 0;
+  }
+
+  incrementar(x=1) {
+    this.num += x;
+    console.log(`Contador en ${this.num}.`);
+  }
+}
+
+const cont = new Contador();
+cont.incrementar();
+cont.incrementar();
+cont.incrementar(2);
 
    
    

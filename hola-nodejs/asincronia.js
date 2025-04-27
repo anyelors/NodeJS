@@ -1,3 +1,4 @@
+/** 
 function mostrarMensaje(msg) {
   console.log(msg);
 }
@@ -193,7 +194,7 @@ document.getElementById("btnCargar").addEventListener("click", () => {
 });
 */
 //-----------------------------------------------------------------------
-
+/*
 function cargarContenido(url, callback, errorCallback) {
   fetch(url) // Realiza una consulta HTTP GET a la URL proporcionada
     .then((response) => {
@@ -226,3 +227,130 @@ document.getElementById("btnCargar").addEventListener("click", () => {
     }
   );
 });
+
+*/
+
+/**
+ * EJERCICIOS
+ */
+
+function sAlert(str) {
+  alert(str);
+}
+
+function sConsole(str) {
+  console.log(str);
+}
+
+function addText2HTML(msj) {
+  const msjElemento = document.createElement("p");
+  msjElemento.textContent = msj;
+  document.body.appendChild(msjElemento);
+}
+
+/**1. 
+function saludar2(nombre, callback) {
+  const mensaje3 = `Kaixo, ${nombre}!`;
+  callback(mensaje3);
+}
+
+document.getElementById("btnSaludarNew").addEventListener("click", function () {
+  saludar2("Paco", addText2HTML);
+});
+*/
+
+/**2. 
+function cambiarFondo(color, callback) {
+  document.body.style.backgroundColor = color;
+  callback(`Color cambiado a ${color}`);
+}
+
+document.getElementById("btnColor").addEventListener("click", () => {
+  cambiarFondo("red", sConsole);
+});
+*/
+
+/**3. 
+function cargarContenido(callback) {
+  setTimeout(() => {
+    callback("Tiempo Cumplido.");
+  }, 2000);
+}
+
+document.getElementById("btnCargar").addEventListener("click", () => {
+  document.getElementById("resultado").textContent = "Cargando...";
+  cargarContenido(function (mensaje) {
+    document.getElementById("resultado").textContent = mensaje;
+  });
+});
+*/
+
+/**4. 
+function cargarSaludo(callback) {
+  const nom = document.getElementById("saludoNom").value;
+  if (!nom || nom.trim() == ""){
+    alert("Debe ingresar un nombre");
+    return false;
+  }
+  callback(`Hola <b>${nom}</b> esto es un mensaje personalizado`);
+}
+
+document.getElementById("saludar").addEventListener("click", () => {
+  cargarSaludo(function (mensaje) {
+    document.getElementById("saludoPer").innerHTML = mensaje;
+  });
+});
+*/
+
+/**5. 
+function cambiarFondo(color, callback, callback1) {
+  document.body.style.backgroundColor = color;
+  callback(`Color cambiado a ${color}`);
+  callback1(`Color cambiado a ${color}`)
+}
+
+document.getElementById("btnColor").addEventListener("click", () => {
+  cambiarFondo("grey", 
+    sConsole,
+    addText2HTML);
+});
+*/
+
+/**6. 
+const msj = document.getElementById("resultado");
+function cargarContenido(callback) {
+  setTimeout(() => {
+    callback("Datos Listos.");
+  }, 2000);
+}
+
+document.getElementById("btnCargar").addEventListener("click", () => {
+  msj.textContent = "Cargando...";
+  cargarContenido(function (mensaje) {
+    msj.textContent = mensaje;
+  });
+});
+*/
+
+/**7. */
+function validarNumeroAlto(num, callback) {
+  let msj;
+  
+  if(isNaN(num) || num.trim() == "") {
+    msj = "Numero Invalido";
+  } else {
+    msj = "Numero Bajo";
+    if (parseInt(num) > 10)
+      msj = "Numero Alto";
+  }  
+  
+  callback(`Validador: ${msj}`);
+}
+
+document.getElementById("btnValidar").addEventListener("click", () => {
+  const num = document.getElementById("numero").value;
+  validarNumeroAlto(num, 
+                    sConsole
+  );
+});
+

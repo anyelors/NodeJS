@@ -231,9 +231,8 @@ document.getElementById("btnCargar").addEventListener("click", () => {
 */
 
 /**
- * EJERCICIOS
- */
-
+ * EJEMPLOS ##################################################################
+ 
 function sAlert(str) {
   alert(str);
 }
@@ -247,6 +246,7 @@ function addText2HTML(msj) {
   msjElemento.textContent = msj;
   document.body.appendChild(msjElemento);
 }
+*/  
 
 /**1. 
 function saludar2(nombre, callback) {
@@ -332,7 +332,7 @@ document.getElementById("btnCargar").addEventListener("click", () => {
 });
 */
 
-/**7. */
+/**7. 
 function validarNumeroAlto(num, callback) {
   let msj;
   
@@ -353,4 +353,178 @@ document.getElementById("btnValidar").addEventListener("click", () => {
                     sConsole
   );
 });
+*/
+
+
+//----------------------------------------------------------------------
+/** 
+document.getElementById("btnFetch").addEventListener("click", () => {
+  const url = "https://jsonplaceholder.typicode.com/users/1";
+  document.getElementById("result").textContent = "Cargando...";
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Error HTTP: " + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById("result").textContent =
+        `Nombre: ${data.name}\nEmail: ${data.email}`;
+    })
+    .catch(error => {
+      document.getElementById("result").textContent = `❌ Error: ${error.message}`;
+    });
+});
+*/
+
+/** 
+document.getElementById("btnFetch").addEventListener("click", async () => {
+  const url = "https://jsonplaceholder.typicode.com/users/1";
+  const resultadoElemento = document.getElementById("result");
+
+  resultadoElemento.textContent = "Cargando...";
+
+  try {
+      const response = await fetch(url);
+      if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
+      }
+
+      const data = await response.json();
+      resultadoElemento.textContent = `Nombre: ${data.name}\nEmail: ${data.email}`;
+  } catch (error) {
+      resultadoElemento.textContent = `❌ Error: ${error.message}`;
+  } finally {
+      // Se ejecuta siempre, éxito o error
+      console.log("Petición finalizada");
+      resultadoElemento.style.fontStyle = "italic"; // Dar un estilo visual para indicar que terminó la operación
+  }
+});
+*/
+
+//---------------------------------------------------------------------------
+/** 
+function obtenerDatos() {
+  return new Promise((resolve, reject) => {
+    const exito = Math.random() > 0.5;
+    setTimeout(() => {
+      if (exito) resolve("✅ Datos correctos");
+      else reject("❌ Fallo al obtener datos");
+    }, 1500);
+  });
+}
+
+obtenerDatos()
+  .then(mensaje => {
+    console.log(mensaje);
+    return mensaje + " De nuevo";
+  })  
+  .then( x => {
+    console.log(x);
+    return x + " Otra vez más";
+  })
+  .then( y => {
+    console.log(y);
+  })
+  .catch(error => console.error(error))
+  .finally(() => console.log("Este es el final!!!"));
+*/
+
+/**
+ * EJERCICIOS ########################################################
+*/
+
+/**1. 
+function esperarSegundos(seg) {
+  return new Promise((resolve) => {
+          resolve({ id: 1, value: 3, msg: "Tiempo Cumplido..." });
+  });
+}
+
+function processDataPromise(data) {
+  return new Promise((resolve) => {
+    let reley = data.value * 1000;
+      setTimeout(() => {
+          console.log(data.msg.toUpperCase());
+      }, reley);
+  });
+}
+
+esperarSegundos(4)
+  .then(processDataPromise)
+  .catch(error => console.error("Error:", error));
+*/
+
+/**2. 
+function verificarEdad(edad) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (edad >= 18) resolve("✅ Acceso permitido");
+      else reject("❌ Acceso denegado");
+    }, 1000);
+  });
+}
+
+let edad = 22;
+verificarEdad(edad)
+  .then(mensaje => {
+    console.log(mensaje);
+  })
+  .catch(error => console.error(error))
+  .finally(() => console.log("Finaliza proceso de Acceso al Sistema"));
+*/  
+
+/**3. 
+function verificarNumero() {
+  return new Promise((resolve, reject) => {
+    const valNumero = Math.floor(Math.random() * 10);
+    setTimeout(() => {
+      if (valNumero > 5) resolve(`✅ Número aceptado: ${valNumero}`);
+      else reject(`❌ Número demasiado bajo: ${valNumero}`);
+    }, 1000);
+  });
+}
+
+verificarNumero()
+  .then(mensaje => {
+    console.log(mensaje);
+  })
+  .catch(error => console.error(error))
+  .finally(() => console.log("Finaliza verificar Número!!!"));
+*/  
+
+/**4. */
+let user = "lupe";
+function buscarUsuario() {
+  return new Promise((resolve) => {
+          resolve({ id: "admin", value: "Administrador" });
+  });
+}
+
+function processDataPromise(data) {
+  return new Promise(() => {
+      setTimeout(() => {
+        if (user == data.id)
+          console.log(`✅ Usuario: [${data.id}] Rol: [${data.value}]`);
+        else
+          console.log(`❌ Usuario: [${user}] no encontrado`);
+      }, 1500);
+  });
+}
+
+buscarUsuario()
+  .then(processDataPromise)
+  .catch(error => console.error("Error:", error));
+
+
+/**5. */
+
+/**6. */
+
+/**7. */
+
+/**8. */
+
 

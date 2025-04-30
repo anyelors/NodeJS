@@ -437,24 +437,24 @@ obtenerDatos()
 */
 
 /**1. 
-function esperarSegundos(seg) {
+function esperarSegundos() {
   return new Promise((resolve) => {
-          resolve({ id: 1, value: 3, msg: "Tiempo Cumplido..." });
+          resolve({ value: 3, msg: "Tiempo Cumplido..." });
   });
 }
 
 function processDataPromise(data) {
   return new Promise((resolve) => {
-    let reley = data.value * 1000;
-      setTimeout(() => {
-          console.log(data.msg.toUpperCase());
-      }, reley);
+    let relay = data.value * 1000;
+    setTimeout(() => {
+      console.log(data.msg.toUpperCase());
+    }, relay);
   });
 }
 
-esperarSegundos(4)
+esperarSegundos()
   .then(processDataPromise)
-  .catch(error => console.error("Error:", error));
+  .finally(() => console.log("Finaliza proceso de Acceso al Sistema"));
 */
 
 /**2. 
@@ -469,9 +469,7 @@ function verificarEdad(edad) {
 
 let edad = 22;
 verificarEdad(edad)
-  .then(mensaje => {
-    console.log(mensaje);
-  })
+  .then(result => console.log(result))
   .catch(error => console.error(error))
   .finally(() => console.log("Finaliza proceso de Acceso al Sistema"));
 */  
@@ -481,50 +479,136 @@ function verificarNumero() {
   return new Promise((resolve, reject) => {
     const valNumero = Math.floor(Math.random() * 10);
     setTimeout(() => {
-      if (valNumero > 5) resolve(`✅ Número aceptado: ${valNumero}`);
-      else reject(`❌ Número demasiado bajo: ${valNumero}`);
+      if (valNumero > 5) 
+        resolve(`✅ Número aceptado: ${valNumero}`);
+      else 
+        reject(`❌ Número demasiado bajo: ${valNumero}`);
     }, 1000);
   });
 }
 
 verificarNumero()
-  .then(mensaje => {
-    console.log(mensaje);
-  })
+  .then(result => console.log(result))
   .catch(error => console.error(error))
-  .finally(() => console.log("Finaliza verificar Número!!!"));
+  .finally(() => console.log("Finaliza Verifica Número!!!"));
 */  
 
-/**4. */
-let user = "lupe";
+/**4. 
 function buscarUsuario() {
   return new Promise((resolve) => {
-          resolve({ id: "admin", value: "Administrador" });
+    setTimeout(() => {
+      resolve({ id: "admin", rol: "Administrador" });
+    }, 1500);  
   });
 }
 
+let user = "admin";
 function processDataPromise(data) {
-  return new Promise(() => {
-      setTimeout(() => {
-        if (user == data.id)
-          console.log(`✅ Usuario: [${data.id}] Rol: [${data.value}]`);
-        else
-          console.log(`❌ Usuario: [${user}] no encontrado`);
-      }, 1500);
+  return new Promise((_, reject) => {
+    if (user == data.id)
+      console.log(`✅ Usuario: [${data.id}] Rol: [${data.rol}]`);
+    else
+      reject(`❌ Usuario: [${user}] no encontrado`);
   });
 }
 
 buscarUsuario()
   .then(processDataPromise)
-  .catch(error => console.error("Error:", error));
+  .catch(error => console.error(error))
+  .finally(() => console.log("Fin Verifica Usuario!!!"));
+*/
 
+/**5. 
+function generaNumero() {
+  return new Promise((resolve) => {
+    const valNumero = Math.floor(Math.random() * 10);
+    console.log(`Valor Generado ${valNumero}`);
+    resolve(valNumero);
+  });
+}
 
-/**5. */
+function calcOperacion(valNumero) {
+  return new Promise((resolve) => {
+      setTimeout(() => {
+        let opr = valNumero * 2; 
+        console.log(`Realiza Operación: Valor Generado ${valNumero} se multiplica por 2`);
+        resolve(opr);
+      }, 500);
+  });
+}
 
-/**6. */
+function impOperacion(result) {
+  return new Promise((_) => {
+      setTimeout(() => {
+        console.log(`Imprime Valor Calculado: [${result}]`);
+      }, 500);
+  });
+}
 
-/**7. */
+generaNumero()
+  .then(calcOperacion)
+  .then(impOperacion)
+  .catch(error => console.error(error))
+  .finally(() => console.log("Fin operación matematica!!!"));
+*/  
+
+/**6. 
+function verificarEmail(email) {
+  return new Promise((resolve, reject) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (regex.test(email))
+      resolve(`✅ Email Valido: ${email}`);
+    else 
+      reject(`❌ Email Invalido: ${email}`);
+  });
+}
+
+let varEmail = "lupe@prueba.gov";
+verificarEmail(varEmail)
+  .then(result => console.log(result))
+  .catch(error => console.error(error))
+  .finally(() => console.log("Finaliza verifica Email!!!"));
+*/  
+
+/**7. 
+function cargarImagen() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      document.getElementById('foto').src = "./image/imagen2.jpg";
+      resolve(`✅ Imagen Cargada`);
+    }, 1000);
+  });
+}
+
+cargarImagen()
+  .then(result => console.log(result))
+  .finally(() => console.log("Finaliza carga de imagen!!!"));
+*/
 
 /**8. */
+function buscarUsuario() {
+  return new Promise((resolve) => {
+    console.log("Consultando Usuario");
+    setTimeout(() => {
+      resolve({ user: "admin", pass: "1234" });
+    }, 1500);      
+  });
+}
 
+let user = "admi";
+let pass = "1234";
+function processDataPromise(data) {
+  return new Promise((resolve, reject) => {
+      if (user == data.user && pass == data.pass)
+        resolve(`✅ Usuario [${data.user}] Bienvenido al Sistema!!`);
+      else
+        reject(`❌ Usuario [${user}] Credenciales inválidas`);
+  });
+}
+
+buscarUsuario()
+  .then(processDataPromise)
+  .then(result => console.log(result))
+  .catch(error => console.error("Error:", error))
+  .finally(() => console.log("Proceso Finaliza!!!"));
 

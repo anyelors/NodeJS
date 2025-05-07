@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <title>Ejercicios JavaScript</title>
-</head>
-<body>
+  </head>
+  <body>
     <!--
     <div class="lista-tareas">
         <h1>Lista de Tareas</h1>
@@ -258,13 +258,36 @@
 
 -->
 
-<!-- Ejercicios de Api's Weather ##############################################################-->
+    <!-- Ejercicios de Api's OpenWeathermap ##############################################################
     
     <h1>Consulta el tiempo</h1>
     <input id="ciudad" placeholder="Introduce una ciudad" />
     <button onclick="consultarTiempo()">Buscar</button>
     <div id="resultado"></div>
 
+-->
+
+    <!-- Ejercicios de Weather Api's ##############################################################
+
+    <h1>Consulta el tiempo</h1>
+    <input id="ciudad" placeholder="Introduce una ciudad" />
+    <button onclick="consultarTiempo()">Buscar</button>
+    <div id="resultado"></div>
+
+    -->
+
+    <!-- Ejercicios de OMDb API ##############################################################-->
+    <div>
+        <h1>Consulta de Peliculas</h1>
+        <input id="apiKey" placeholder="Introduce Api Key" />
+        <input id="pelicula" placeholder="Introduce nombre pelicula" />
+        <input id="anio" placeholder="Introduce año pelicula" />
+        <button onclick="consultarPelicula()">Buscar</button>
+        <br>
+        <br>
+        <br>
+        <div id="resultado"></div>
+    </div>
 
 
 
@@ -283,5 +306,5 @@
     <!--<script type="text/javascript" src="./asincronia.js"></script>-->
     <!--<script type="text/javascript" src="./async_await.js"></script>-->
     <script type="text/javascript" src="./api.js"></script>
-</body>
+  </body>
 </html>

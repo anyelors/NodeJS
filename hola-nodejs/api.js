@@ -143,8 +143,8 @@ async function borrarProducto(id) {
 */
 
 /**
- * 
- */
+ *  OpenWeathermap
+ *
 
 async function consultarTiempo() {
     const ciudad = document.getElementById("ciudad").value.trim();
@@ -182,4 +182,95 @@ async function consultarTiempo() {
       resultado.innerText = "Error de red o conexión.";
       console.error("Error:", error);
     }
+  }
+*/    
+
+/**
+ *  Weather Api 
+ 
+async function consultarTiempo() {
+  const ciudad = document.getElementById("ciudad").value.trim();
+  const resultado = document.getElementById("resultado");
+
+  if (ciudad === "") {
+    resultado.innerText = "Por favor, introduce una ciudad.";
+    return;
   }  
+  const API_KEY = "f3f9d8ff61aa4dd1a22102207250705"; // Sustituye por tu clave
+  const url = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${ciudad}&lang=es`;
+
+  try {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      if (res.status === 404) {
+        resultado.innerText = "Ciudad no encontrada.";
+      } else {
+        resultado.innerText = "Error al consultar el tiempo.";
+      }
+      return;
+    }
+
+    const data = await res.json();
+    resultado.innerHTML = `
+      <h2>Tiempo en ${data.location.name}, ${data.location.region}</h2>
+      <br>
+      <img src="${data.current.condition.icon}" alt="" srcset="">
+      <p>🌡️ Temperatura: ${data.current.temp_c} °C con sensación térmica de ${data.current.feelslike_c} °C</p>
+      <p>💨 Viento: ${data.current.wind_kph} K/H</p>
+      <p>☁️ Nubes: ${data.current.cloud}</p>
+      <p>☁️ Cielo: ${data.current.condition.text}</p>
+      <p>🌫️ Humedad: ${data.current.humidity} %</p>
+    `;
+  } catch (error) {
+    resultado.innerText = "Error de red o conexión.";
+    console.error("Error:", error);
+  }
+}
+*/
+
+/**
+ *  OMDb API  
+*/
+async function consultarPelicula() {
+  const API_KEY = document.getElementById("apiKey").value.trim();
+  if (API_KEY === ""){
+    alert("Debe ingresar una Api Key");
+    return false;
+  }  
+    
+  const pelicula = document.getElementById("pelicula").value.trim();
+  if (pelicula === ""){
+    alert("Debe ingresar el nombre de una Pelicula");
+    return false;
+  }
+
+  const anio = document.getElementById("anio").value.trim();
+  const resultado = document.getElementById("resultado"); 
+  //const API_KEY = "f28c3805"; // Sustituye por tu clave
+  const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${pelicula}&y=${anio}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.Error) {
+      throw new Error(data.Error);
+    }
+
+    resultado.innerHTML = `
+      <h2>Pelicula ${data.Title}, año ${data.Year}</h2>
+      <br>
+      <img src="${data.Poster}" alt="" srcset="">
+      <p><b>Director:</b> ${data.Director}</p>
+      <p><b>Actores:</b> ${data.Actors} K/H</p>
+      <p><b>Trama:</b> ${data.Plot}</p>
+      <p><b>Puntuación IMDB:</b> ${data.Ratings[0].Value}</p>
+      <p><b>Premios:</b> ${data.Awards} %</p>
+    `;
+  } catch (error) {
+    resultado.innerText = `${error}`;
+    console.error("Error:", error);
+  }
+}
+

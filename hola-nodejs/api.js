@@ -254,7 +254,7 @@ async function consultarPelicula() {
     const res = await fetch(url);
     const data = await res.json();
 
-    if (data.Error) {
+    if (data.Response === 'False') {
       throw new Error(data.Error);
     }
 

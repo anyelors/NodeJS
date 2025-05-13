@@ -276,7 +276,7 @@
 
     -->
 
-    <!-- Ejercicios de OMDb API ##############################################################-->
+    <!-- Ejercicios de OMDb API ##############################################################
     <div>
         <h1>Consulta de Peliculas</h1>
         <input id="apiKey" placeholder="Introduce Api Key" />
@@ -289,6 +289,21 @@
         <div id="resultado"></div>
     </div>
 
+    -->
+
+    <h1>Tienda</h1>
+    <input id="nom_product" placeholder="Introduce nombre producto" />
+    <input id="precio_product" placeholder="Introduce precio producto" />
+    <button onclick="añadirProducto()">Añadir</button>
+    <br>
+    <input id="idP" placeholder="ID" />
+    <button onclick="buscarPorID()">Buscar Por ID</button>
+    <button onclick="buscar()">Buscar All</button>
+
+    <div id="resultado">
+        <h2>Resultados</h2>
+        <div id="productosList"></div>
+    </div>
 
 
     <!--<script type="text/javascript" src="./condicionales.js"></script>-->
@@ -305,6 +320,7 @@
     <!--<script type="text/javascript" src="./encapsulamiento.js"></script>-->
     <!--<script type="text/javascript" src="./asincronia.js"></script>-->
     <!--<script type="text/javascript" src="./async_await.js"></script>-->
-    <script type="text/javascript" src="./api.js"></script>
+    <!--<script type="text/javascript" src="./api.js"></script>-->
+    <script type="text/javascript" src="./productos.js"></script>
   </body>
 </html>

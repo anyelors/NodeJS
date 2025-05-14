@@ -5,22 +5,24 @@ async function buscar() {
     const res = await fetch(`http://localhost:3000/productos`);
 
     if (!res.ok) {
-      throw new Error("Error server");
+      if (res.status === 404) {
+        throw new Error(data.mensaje);
+      }
+      throw new Error(`Error en la respuesta del servidor ${res.status}`);
     }
-    console.log("Response status " + res.status);
+
     const data = await res.json();
-    
-    console.log(data);
+
+    productos = data;
     if (!Array.isArray(data)) {
       productos = [data];
     }
-
     productos.forEach((datos) => {
       const productoDiv = document.createElement("div");
       productoDiv.innerHTML = `
-            <h3>${datos.nombre}</h3>
+            <h3>${datos.nombre || "No existe"}</h3>
             <p><strong>ID:</strong> ${datos.id}</p>
-            <p><strong>Precio:</strong> $${datos.precio}</p>
+            <p><strong>Precio:</strong> $${datos.precio || " No existe"}</p>
         `;
       productosList.appendChild(productoDiv);
     });
@@ -43,7 +45,7 @@ async function buscarPorID() {
       if (res.status === 404) {
         throw new Error(data.mensaje);
       }
-      throw new Error("Error en la respuesta del servidor");
+      throw new Error(`Error en la respuesta del servidor ${res.status}`);
     }
 
     console.log(data);
@@ -54,9 +56,9 @@ async function buscarPorID() {
     productos.forEach((datos) => {
       const productoDiv = document.createElement("div");
       productoDiv.innerHTML = `
-                <h3>${datos.nombre}</h3>
+                <h3>${datos.nombre || "No existe"}</h3>
                 <p><strong>ID:</strong> ${datos.id}</p>
-                <p><strong>Precio:</strong> $${datos.precio}</p>
+                <p><strong>Precio:</strong> $${datos.precio || " No existe"}</p>
             `;
       productosList.appendChild(productoDiv);
     });
@@ -66,31 +68,38 @@ async function buscarPorID() {
 }
 
 async function añadirProducto() {
-  const nom_product = document.getElementById("nom_product").value;
-  const precio_product = document.getElementById("precio_product").value;
+  try {
+    let productos = [];
+    document.getElementById("productosList").innerHTML = "";
+    const nom_product = document.getElementById("nom_product").value;
+    const precio_product = document.getElementById("precio_product").value;
 
-  fetch("http://localhost:3000/productos", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nombre: nom_product, precio: precio_product }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log("Producto agregado:", data))
-    .catch((error) => console.error("Error:", error));
+    const res = await fetch("http://localhost:3000/productos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre: nom_product, precio: precio_product }),
+    });
+
+    if (!res.ok) throw new Error(`Error HTTP ${res.status}`);
+
+    const data = await res.json();
+    console.log("Producto agregado:", data);
+
+    productos = data;
+    if (!Array.isArray(data)) {
+      productos = [data];
+    }
+    productos.forEach((datos) => {
+      const productoDiv = document.createElement("div");
+      productoDiv.innerHTML = `
+            <h3>Producto Agregado</h3>
+            <h3>${datos.nombre || "No existe"}</h3>
+            <p><strong>ID:</strong> ${datos.id}</p>
+            <p><strong>Precio:</strong> $${datos.precio || " No existe"}</p>
+        `;
+      productosList.appendChild(productoDiv);
+    });
+  } catch (error) {
+    console.error(`${error}`);
+  }
 }
-
-/*
-  fetch("http://localhost:3000/productos", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ nombre: "Zapatos", precio: 50 })
-})
-  .then(res => res.json())
-  .then(data => console.log("Producto agregado:", data))
-  .catch(error => console.error("Error:", error));
-
-  fetch("http://localhost:3000/productos")
-  .then(res => res.json())
-  .then(data => console.log("Lista actualizada de productos:", data))
-  .catch(error => console.error("Error:", error));
-  */

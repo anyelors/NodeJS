@@ -8,19 +8,23 @@ app.use(cors());
 const productos = [{ id: 1, nombre: "Camiseta", precio: 20 }];
 
 // Endpoint GET para obtener un producto por ID
-app.get('/productos/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const producto = productos.find(p => p.id === id);
-    
-    if (producto) {
-        res.json(producto);
-    } else {
-        res.status(404).json({ mensaje: 'Producto no encontrado' });
-    }
+app.get("/productos/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const producto = productos.find((p) => p.id === id);
+
+  if (producto) {
+    res.status(201).json(producto);
+  } else {
+    res.status(404).json({ mensaje: "Producto no encontrado" });
+  }
 });
 
 app.get("/productos", (req, res) => {
-  res.json(productos)
+  if (productos) {
+    res.status(201).json(productos);
+  } else {
+    res.status(404).json({ mensaje: "Producto no encontrado" });
+  }
 });
 
 app.post("/productos", (req, res) => {
@@ -33,4 +37,3 @@ app.post("/productos", (req, res) => {
 app.listen(3000, () => {
   console.log("Servidor corriendo en puerto 3000");
 });
-

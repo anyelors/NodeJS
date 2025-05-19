@@ -1,0 +1,14 @@
+{
+  "name": "pokeapi",
+  "version": "1.0.0",
+  "main": "get_id.js",
+  "scripts": {
+    "forid": "node get_id.js",
+    "forname": "node get_name.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

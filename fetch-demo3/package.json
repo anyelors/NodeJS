@@ -1,0 +1,14 @@
+{
+  "name": "fetch-demo3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "startp": "node post.js",
+    "startg": "node get.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["GET", "POST"],
+  "author": "AnyeloRS",
+  "license": "ISC",
+  "description": ""
+}

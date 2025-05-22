@@ -24,6 +24,10 @@ pruebaPOST();
 */
 
 /** */
+// Ejecutar la función
+pruebaPOST();
+eliminarUsuario();
+
 async function pruebaPOST() {
   try {
     let datos = {
@@ -31,7 +35,7 @@ async function pruebaPOST() {
       edad: 8,
       ciudad: "Panama",
     };
-    const res = await fetch("http://localhost:3004/api/usuario", {
+    const res = await fetch("http://localhost:3004/api/addusuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,4 +52,21 @@ async function pruebaPOST() {
   }
 }
 
-pruebaPOST();
+
+/** */
+async function eliminarUsuario() {
+    try {
+        const res = await fetch('http://localhost:3004/api/delusuario', {
+            method: 'DELETE'
+        });
+
+        if (!res.ok) throw new Error("❌ Error al eliminar usuario!");
+
+        const data = await res.json(); // Convertimos la respuesta a JSON
+        console.log(data);
+    } catch (error) {
+        console.error('🚨 Error:', error);
+    }
+}
+
+

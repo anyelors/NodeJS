@@ -388,7 +388,7 @@ server.listen(3003, () => {
 });
 */
 
-/** */
+/** 
 const http = require("http");
 
 let datos = [
@@ -442,4 +442,67 @@ const server = http.createServer((req, res) => {
 
 server.listen(3004, () => {
   console.log("API en http://localhost:3004/api/usuario");
+});
+*/
+
+/** */
+const http = require('http');
+
+let datos = [{
+  nombre: "Maialen",
+  edad: 44,
+  ciudad: "Bilbao"
+}];
+
+const validarUsuario = (usuario) => {
+  return usuario &&
+         typeof usuario.nombre === 'string' && usuario.nombre.trim() !== '' &&
+         typeof usuario.edad === 'number' && usuario.edad >= 0 &&
+         typeof usuario.ciudad === 'string' && usuario.ciudad.trim() !== '';
+};
+
+const server = http.createServer((req, res) => {
+  if (req.method === 'GET' && req.url === '/api/usuario') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(datos));
+  } else if (req.method === 'POST' && req.url === '/api/addusuario') {
+    let body = '';
+
+    req.on('data', chunk => {
+      body += chunk;
+    });
+
+    req.on('end', () => {
+      try {
+        const nuevoUsuario = JSON.parse(body);
+
+        if (!validarUsuario(nuevoUsuario)) {
+          throw new Error("Estructura incorrecta");
+        }
+
+        datos.push(nuevoUsuario);
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ mensaje: "✅ Usuario agregado", datos }));
+      } catch (error) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: "❌ Datos inválidos, envía nombre, edad y ciudad" }));
+      }
+    });
+  } else if (req.method === 'DELETE' && req.url === '/api/delusuario') {
+    if (datos.length > 0) {
+      datos.pop(); // Elimina el último usuario
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ mensaje: "🗑️ Último usuario eliminado", datos }));
+    } else {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: "❌ No hay usuarios para eliminar" }));
+    }
+  } else {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: "❌ No encontrado" }));
+  }
+});
+
+server.listen(3004, () => {
+  console.log('API en http://localhost:3004/api/usuario');
 });

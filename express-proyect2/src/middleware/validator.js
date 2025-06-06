@@ -7,6 +7,8 @@ export const validator = [
     .notEmpty().withMessage('Usuario obligatorio')
     .isAlphanumeric().withMessage('Solo se permiten letras y números')
     .isLength({ min: 5 }).withMessage('Usuario debe tener como minimo 5 caracteres'),
+  body('password')
+    .isLength({ min: 8 }).withMessage('Contraseña demasiado corta'),  
   body('email').isEmail().withMessage('Debes introducir un correo válido'),
   body('edad')
     .isInt({ min: 18 }).withMessage('Debes tener al menos 18 años'),

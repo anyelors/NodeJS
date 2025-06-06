@@ -4,6 +4,7 @@ document.getElementById('formulario').addEventListener('submit', async e => {
   const datos = {
     nombre: e.target.nombre.value,
     usuario: e.target.usuario.value,
+    password: e.target.password.value,
     email: e.target.email.value,
     edad: e.target.edad.value
   };

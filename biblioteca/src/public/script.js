@@ -1,11 +1,15 @@
 document.getElementById('formulario').addEventListener('submit', async e => {
   e.preventDefault();
 
+  const select = document.getElementById("disponible"); 
+  const disponible = select.options[select.selectedIndex];
+
+
   const datos = {
     titulo: e.target.titulo.value,
     autor: e.target.autor.value,
     anio: e.target.anio.value,
-    disponible: e.options[disponible.selectedIndex]
+    disponible: disponible.value === 1 ? true : false
   };
 
   const res = await fetch('http://localhost:3000/api/libros', {

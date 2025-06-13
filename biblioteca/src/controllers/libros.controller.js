@@ -36,7 +36,7 @@ export const agregarLibro = async (req, res) => {
       [titulo, autor, anio]
     );
 
-    res.status(201).json({ id: resultado.insertId, titulo, autor, anio });
+    res.status(201).json({ mensaje: "Libro agregado correctamente", id: resultado.insertId, titulo, autor, anio });
   } catch (error) {
     console.error("❌ Error al agregar libro:", error.message);
     res.status(500).json({ error: "Error al agregar libro" });

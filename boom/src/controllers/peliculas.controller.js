@@ -104,7 +104,11 @@ export const devolverPelicula = async (req, res) => {
     if (!results.length) return res.status(404).json({ error: 'Alquiler de pelicula no encontrado' });
     
     if (!results[0].fecha_devolucion) {
-      const [resultado] = await conn.execute("UPDATE alquilado SET fecha_devolucion = NOW() WHERE id=?",
+      await conn.execute("UPDATE alquilado SET fecha_devolucion = NOW() WHERE id=?",
+        [id]
+      );
+      
+      await conn.execute("UPDATE peliculas SET stock = stock + 1 WHERE id=?",
         [id]
       );
       msg = "Pelicula devuelta correctamente";
@@ -135,9 +139,13 @@ export const alquilarPelicula = async (req, res) => {
     if (results[0].stock <= 0)
       return res.status(400).json({ error: "Pelicula no disponible" });
         
-    const [resultado] = await conn.query(
+    await conn.query(
       "INSERT INTO alquilado (usuario_id, pelicula_id, fecha_alquiler) VALUES (?, ?, NOW())",
       [usuario_id, id]
+    );
+
+    await conn.execute("UPDATE peliculas SET stock = stock - 1 WHERE id=?",
+      [id]
     );
 
     res.json({ message: "Pelicula alquilada correctamente" });

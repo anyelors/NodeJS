@@ -100,7 +100,7 @@ export const devolverPelicula = async (req, res) => {
   try {
     conn = await db.getConnection();
 
-    const [results] = await conn.query("SELECT fecha_devolucion FROM alquilado WHERE id = ?", [id]);
+    const [results] = await conn.query("SELECT fecha_devolucion, pelicula_id FROM alquilado WHERE id = ?", [id]);
     if (!results.length) return res.status(404).json({ error: 'Alquiler de pelicula no encontrado' });
     
     if (!results[0].fecha_devolucion) {
@@ -109,7 +109,7 @@ export const devolverPelicula = async (req, res) => {
       );
       
       await conn.execute("UPDATE peliculas SET stock = stock + 1 WHERE id=?",
-        [id]
+        [results[0].pelicula_id]
       );
       msg = "Pelicula devuelta correctamente";
     } else {

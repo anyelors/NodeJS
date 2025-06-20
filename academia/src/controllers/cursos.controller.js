@@ -21,7 +21,9 @@ export const listarAsignaturas = async (req, res) => {
                                               academia_db.cursos c
                                         where  a.curso_id = c.id
                                         order by 2 asc`);
-    res.json(rows);
+    rows.length
+    ? res.json(rows)
+    : res.status(404).json({ error: "No existen asignaturas" });
   } catch (error) {
     console.error("❌ Error al obtener asignaturas:", error.message);
     res.status(500).json({ error: "Error al obtener asignaturas" });
@@ -41,7 +43,9 @@ export const misCursos = async (req, res) => {
                                         where i.usuario_id = ?
                                           and i.usuario_id = u.id
                                           and i.curso_id = c.id;`, [usuario_id]);
-    res.json(rows);
+    rows.length
+    ? res.json(rows)
+    : res.status(404).json({ error: "Usuario no tiene cursos" });
   } catch (error) {
     console.error("❌ Error al obtener mis cursos:", error.message);
     res.status(500).json({ error: "Error al obtener mis cursos" });
@@ -58,11 +62,13 @@ export const misNotas = async (req, res) => {
                                          from academia_db.notas n,
                                              academia_db.asignaturas a,
                                              academia_db.usuarios u
-                                       where n.usuario_id = 1
+                                       where n.usuario_id = ?
                                          and n.usuario_id = u.id
                                          and n.asignatura_id = a.id
                                        order by 1 asc;`, [usuario_id]);
-    res.json(rows);
+    rows.length
+    ? res.json(rows)
+    : res.status(404).json({ error: "Usuario no tiene notas" });
   } catch (error) {
     console.error("❌ Error al obtener mis cursos:", error.message);
     res.status(500).json({ error: "Error al obtener mis cursos" });

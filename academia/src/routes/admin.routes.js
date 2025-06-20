@@ -4,7 +4,6 @@ import { crearCurso,
          inscribirAlumno, 
          registrarNota } from '../controllers/admin.controller.js';
 import { verificarToken, soloAdmin } from '../middleware/auth.middleware.js';
-//import { soloAdmin } from '../middleware/roles.middleware.js';
 import {
   validarCurso,
   validarAsignatura,

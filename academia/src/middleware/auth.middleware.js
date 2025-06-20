@@ -21,8 +21,8 @@ export const soloAdmin = (req, res, next) => {
 };
 
 export const soloAlumno = (req, res, next) => {
-  if (req.usuario.role === 'alumno') {
-    next(); 
+  if (req.usuario.role !== 'alumno') {
+    return res.status(403).json({ error: 'Acceso solo para alumnos' });
   }
-  return res.status(403).json({ error: 'Acceso solo para alumnos' });
+  next(); 
 };

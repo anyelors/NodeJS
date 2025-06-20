@@ -64,7 +64,7 @@ export const inscribirseClase = async (req, res) => {
       return res.status(400).json({ error: "No hay plazas disponibles para esta clase" });
     }
 
-    await conn.execute('INSERT INTO inscripciones (usuario_id, clase_id, fecha) VALUES (?, ?, ?)', [usuario_id, clase[0].id, NOW()]); 
+    await conn.execute('INSERT INTO inscripciones (usuario_id, clase_id, fecha) VALUES (?, ?, NOW())', [usuario_id, clase[0].id]); 
     await conn.execute("UPDATE clases SET plazas = plazas - 1 WHERE id=?", [clase[0].id]);
 
     res.status(201).json({ message: `Inscripción realizada correctamente para la clase: ${nombre}` });

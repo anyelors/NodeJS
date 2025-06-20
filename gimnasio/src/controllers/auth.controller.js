@@ -27,7 +27,7 @@ export const login = async (req, res) => {
   
   const conn = await usersDB.getConnection();
   try {
-    const [rows] = await conn.query('SELECT id, username, role FROM users WHERE username = ?', [username]);
+    const [rows] = await conn.execute('SELECT id, username, password, role FROM users WHERE username = ?', [username]);
     const user = rows[0];
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Credenciales inválidas' });

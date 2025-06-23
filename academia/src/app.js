@@ -4,7 +4,6 @@ import error from './middleware/error.middleware.js';
 import authRoutes from './routes/auth.routes.js';
 import cursosRoutes from './routes/cursos.routes.js';
 import adminRoutes from './routes/admin.routes.js';
-import {register} from './controllers/auth.controller.js';
 
 //Creación del servidor express
 const app = express();
@@ -17,7 +16,6 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/cursos', cursosRoutes);
 app.use('/admin', adminRoutes);
-app.post('/register',register); // esto solo para probar, en produccion no mola o sino lo meteis con soloAdmin
 
 //error middleware
 app.use(error);

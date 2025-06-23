@@ -65,6 +65,8 @@ export const validarAsignatura = [
 ];
 
 export const validarInscripcion = [
+  body('username')
+    .notEmpty().withMessage('Username es obligatorio'),
   body('curso_id')
     .notEmpty().withMessage('Codigo del curso es obligatorio'),   
   (req, res, next) => {
@@ -78,6 +80,8 @@ export const validarInscripcion = [
 ];
 
 export const validarNota = [
+  body('username')
+    .notEmpty().withMessage('Username es obligatorio'),
   body('asignatura_id')
     .notEmpty().withMessage('Codigo de la asignatura es obligatorio'),
   body('nota')

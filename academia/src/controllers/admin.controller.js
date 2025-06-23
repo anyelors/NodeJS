@@ -35,7 +35,7 @@ export const inscribirAlumno = async (req, res) => {
 
   const conn = await academiaDB.getConnection();
   try {
-    const [alumno] = await conn.execute('SELECT id from usuarios WHERE username = ? AND rol = "alumno" ', [username]);
+    const [alumno] = await conn.execute('SELECT id from usuarios WHERE username = ? AND rol = "alumno"', [username]);
 
     if (alumno.length === 0) {
       return res.status(404).json({ error: "Alumno no existe" });
@@ -76,11 +76,30 @@ export const registrarNota = async (req, res) => {
     }                                        
 
     await conn.query('INSERT INTO notas (usuario_id, asignatura_id, nota) VALUES (?, ?, ?)', [alumno[0].id, asignatura_id, nota]);
-    res.status(201).json({ message: 'Nota creada' });
+    res.status(201).json({ message: 'Nota registrada correctamente' });
   } catch (error) {
     console.error("❌ Error al crear la nota:", error.message);
     res.status(500).json({ error: "Error al crear la nota" });
   } finally {
     if (conn) conn.release();
   }  
+};
+
+export const eliminarNota = async (req, res) => {
+  const { id } = req.params;
+  const conn = await academiaDB.getConnection();
+  try {
+    const deleteResult = await conn.execute("DELETE FROM notas WHERE id = ?;", [id]);
+
+    if (deleteResult[0].affectedRows === 0) {
+      return res.status(404).json({ error: "Nota no encontrada" });
+    }
+
+    res.json({ message: `Nota eliminada correctamente` });
+  } catch (error) {
+    console.error("❌ Error al eliminar nota:", error.message);
+    res.status(500).json({ error: "Error al eliminar nota" });
+  } finally {
+    if (conn) conn.release();
+  }
 };

@@ -53,7 +53,5 @@ export const loginGuest = async (req, res) => {
   } catch (error) {
     console.error("❌ Error al generar Token Guest:", error.message);
     res.status(500).json({ error: "Error al generar Token Guest" });
-  } finally {
-    if (conn) conn.release();
   }  
 };

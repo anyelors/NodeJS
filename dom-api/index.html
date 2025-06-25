@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adibide DOM</title>
+</head>
+<body>
+
+  <h1>Manipulación del DOM</h1>
+  <p id="demo">Texto original</p>
+  <button onclick="cambiarTexto()">Cambiar</button>
+
+  <br>
+  <br>
+  <br>
+
+  <h1>Aupa,, vamos hacer unas pruebas</h1>
+  <div id="bienvenida"></div>
+  <form id="formulario">
+    <label for="nombre">Tu nombre:</label>
+    <input type="text" id="nombre" required />
+    <button type="submit">Guardar</button>
+  </form>
+
+  <br>
+  <br>
+  <br>
+
+  <h1>🌎 Ver tu ubicación actual</h1>
+  <button onclick="obtenerUbicacion()">Obtener ubicación</button>
+
+  <p id="resultado">Haz clic en el botón para mostrar tu ubicación.</p>
+
+  <br>
+  <br>
+  <br>
+
+  <nav>
+    <button onclick="navegar('inicio')">Inicio</button>
+    <button onclick="navegar('about')">Acerca</button>
+    <button onclick="navegar('contacto')">Contacto</button>
+  </nav>
+
+  <main id="contenido">
+    <h2>Kaixo</h2>
+    <p>Esta es una SPA con JavaScript puro y la History API.</p>
+  </main>
+
+  <br>
+  <br>
+  <br>
+
+  <h1>Lista de Usuarios</h1>
+  <button onclick="cargarUsuarios()">Cargar usuarios</button>
+  <ul id="lista-usuarios"></ul>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>

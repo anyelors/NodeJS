@@ -12,6 +12,8 @@ const app = express();
 app.use(loggerMiddleware);
 app.use(express.json());
 
+app.use(express.static('src/public')); //para servir archivos estaticos
+
 //creacion de rutas
 app.use('/auth', authRoutes);
 app.use('/cursos', cursosRoutes);

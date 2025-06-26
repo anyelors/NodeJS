@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mi ubicación, clima y hora</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>📍 Dónde estoy, qué clima hace y qué hora es</h1>
+  <button id="boton-ubicacion">Obtener mi información</button>
+
+  <div id="info">
+    <p id="ubicacion"></p>
+    <p id="clima"></p>
+    <p id="hora"></p>
+    <div id="mapa"></div>
+  </div>
+
+  <br>
+  <br>
+
+<hr/>
+    
+    <br>
+    <br>
+
+  <h2>📍 Mi ubicación</h2>
+  <button onclick="obtenerUbicacion()">Ver en Google Maps</button>
+  <p id="resultado"></p>
+
+  <hr/>
+    
+    <br>
+    <br>
+
+  <h1>📍 Nombre de la Ciudad Actual</h1>
+
+  <div id="info">
+    <p id="ubicacion-ciudad"></p>
+    <p id="calor"></p>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

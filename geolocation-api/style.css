@@ -1,0 +1,36 @@
+body {
+  font-family: sans-serif;
+  padding: 40px;
+}
+button {
+  padding: 10px 20px;
+}
+ul {
+  margin-top: 20px;
+  list-style: square;
+}
+
+.boton-neumorphism {
+  background-color: #e0e0e0; /* Color de fondo que coincida con el fondo de la página */
+  color: #333;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  transition: all 0.3s ease;
+  outline: none; /* Elimina el contorno al hacer clic */
+}
+
+.boton-neumorphism:hover {
+  box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+  transform: translateY(1px);
+}
+
+.boton-neumorphism:active {
+  box-shadow: inset 2px 2px 5px #bebebe, inset -2px -2px 5px #ffffff;
+  transform: translateY(2px);
+}

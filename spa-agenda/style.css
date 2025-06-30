@@ -1,0 +1,20 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0 1em;
+}
+nav {
+  background: #003366;
+  padding: 1em;
+}
+nav a {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+main {
+  padding: 2em 0;
+}

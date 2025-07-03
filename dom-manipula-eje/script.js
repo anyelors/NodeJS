@@ -11,7 +11,6 @@ linkNavega.addEventListener('click', (e) => {
 /**
  * 2.
  */
-
 const btn = document.getElementById('btn');
 const msg = document.getElementById('msg');
 
@@ -24,11 +23,14 @@ btn.addEventListener('click', (e) => {
 /**
  * 3.
  */
-document.getElementById('contenedor').addEventListener('click', () => {
+const div = document.getElementById('contenedor');
+const btn1 = document.getElementById('miBoton');
+
+div.addEventListener('click', () => {
   console.log('Clic en el DIV contenedor');
 });
 
-document.getElementById('miBoton').addEventListener('click', (e) => {
+btn1.addEventListener('click', (e) => {
   e.stopPropagation();
   console.log('Clic en el BOTÓN');
 });
